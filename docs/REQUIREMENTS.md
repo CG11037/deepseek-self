@@ -55,7 +55,9 @@
 
 ### 3.1 当前数据源（已实测）
 
-DeepSeek 官方导出 `conversations.json`，34.4 MB。
+DeepSeek 官方导出 `conversations.json`，34.4 MB。已复制至项目内 `data/conversations.json`。
+
+> **注意**：`data/` 已被 `.gitignore` 排除，该数据**不会入库**。对话记录属私人数据，默认不进版本库；若确需入库，需显式修改 `.gitignore` 并自行承担泄露风险。
 
 | 指标 | 数值 |
 |---|---|
@@ -300,7 +302,7 @@ entity: { id, name, type, first_seen, last_seen,
 
 具体步骤：
 
-1. 读取 `D:\conversations.json`（34.4 MB），按 §3.2 的结构解析。
+1. 读取项目内 `data/conversations.json`（34.4 MB，已就位），按 §3.2 的结构解析。**使用相对路径，不要写死盘符。**
 2. **按 `message.id` 去重**；只保留 `REQUEST`（用户）与 `RESPONSE`（AI）两类 fragment，剔除 THINK/TOOL_*。
 3. 建 SQLite 表：`conversations`、`messages`、`entities`（先留空）、`period_facts`。启用 FTS5。
 4. 计算并落库（纯 Python，不调任何 API）：

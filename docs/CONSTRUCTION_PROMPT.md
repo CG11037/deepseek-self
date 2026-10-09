@@ -31,7 +31,7 @@ Tauri/React 已明确推迟到语义层打磨满意之后。**本会话不允许
 ## 2. 环境
 
 - Python 3.13；SQLite（启用 FTS5）
-- 数据源：DeepSeek 官方导出 `D:\conversations.json`，34.4 MB
+- 数据源：**项目内 `data/conversations.json`**（34.4 MB，已就位）。一律使用相对路径，**禁止写死任何盘符路径**（`D:\...` 之类）
 - API Key：**用户自备，从环境变量 `DEEPSEEK_API_KEY` 读取，禁止硬编码，禁止写入任何文件**
 - 项目路径：`/home/cg_20233594/mylearn/projects/deepseek-self`
 - 代码、注释、UI 文案、报告正文一律**中文**
@@ -124,7 +124,7 @@ fragment:     { type, content }
 
 ### Phase 1 — 地基（不调用任何 LLM）
 
-- 解析 `conversations.json`，去重，剔除过程数据，红线打码
+- 解析 `data/conversations.json`，去重，剔除过程数据，红线打码
 - 建表：`conversations` / `messages` / `entities` / `period_facts` / `annotations`（B 层回写用）
 - 计算并落库：每周与每月的消息量、用户字数、对话数；断档检测；按小时活跃分布；对话轮次分布
 - 输出 HTML：月度消息量柱状图（空档显式标注"无记录"）+ 活跃时段分布图
